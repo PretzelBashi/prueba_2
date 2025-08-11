@@ -1,0 +1,20 @@
+fun main() {
+    
+    var string = "Pepe";
+    var int = 5;
+    var double = 5.5;
+    var boolean = false;
+    var char = 'A';
+    
+    var string1: String = "Pepe";
+    var int1: Int = 5;
+    var double1: Double = 5.5;
+    var boolean1: Boolean = false;
+    var double1: Char = 'A';
+    
+    val string2: String = "Pepe";
+    val int2: Int = 5;
+    val double2: Double = 5.5;
+    val boolean2: Boolean = false;
+    val double2: Char = 'A';
+}
