@@ -12,9 +12,15 @@ fun main() {
     var boolean1: Boolean = false;
     var double1: Char = 'A';
     
-    val string2: String = "Pepe";
-    val int2: Int = 5;
-    val double2: Double = 5.5;
-    val boolean2: Boolean = false;
-    val double2: Char = 'A';
+    val string2 = "Pepe";
+    val int2 = 5;
+    val double2 = 5.5;
+    val boolean2 = false;
+    val char2 = 'A';
+    
+    val string3: String = "Pepe";
+    val int3: Int = 5;
+    val double3: Double = 5.5;
+    val boolean3: Boolean = false;
+    val double3: Char = 'A';
 }
