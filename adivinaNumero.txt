@@ -6,14 +6,17 @@ fun main() {
     
     var randomInt = Random.nextInt(0,10);
     var respuesta = validad_numero_de_entrada();
-    
-    println("El numero seleccionado fue $respuesta");
-    
+    var contador = 1;
+
     do {
     	if (respuesta == randomInt){break;}
-        else{println("Numero equivocado, vuelva a insertar un numero. Su eleccion fue $respuesta");
-        respuesta = validad_numero_de_entrada();}
-        } while (respuesta != randomInt)
+        else
+        {
+            println("Numero equivocado, vuelva a insertar un numero. Lleva $contador intentos. Su eleccion fue $respuesta");
+            respuesta = validad_numero_de_entrada();
+            contador++;
+        }
+    } while (respuesta != randomInt)
     
     println("El numero fue correcto! Su eleccion fue $respuesta. El numero era $randomInt");
 }
