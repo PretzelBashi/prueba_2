@@ -1,0 +1,111 @@
+//Solo intente replicar las diferentes razas en el juego "Destiny 2", al igual que darles metodos que corresponden
+//a sus acciones dentro del juego
+
+class Guardian(
+    val Nombre:String,
+    val Clase:String,
+    val Raza:String,
+
+){
+    var Poderes:MutableList<String> = mutableListOf()
+    fun agregarPoder(poder:String){
+        Poderes.add(poder)
+        println("Ahora ${Nombre} tiene el poder del/la ${poder} en sus manos\n")
+    }
+    fun imprimir(){
+        println("Guardian")
+        println("Nombre: ${Nombre}")
+        println("Clase: ${Clase}")
+        println("Raza: ${Raza}")
+    }
+}
+
+class Eliksni(
+    val Nombre:String,
+    val Rango:String,
+    var Casa:String
+    
+){
+    fun cambiarCasa(casaNueva:String){
+        Casa = casaNueva
+        println("${Nombre}, de los Eliksni, ahora forma parte de la casa del/de los ${Casa}")
+    }
+    fun imprimir(){
+        println("Eliksni")
+        println("Nombre: ${Nombre}")
+        println("Rango: ${Rango}")
+        println("Casa: ${Casa}")
+    }
+}
+
+class Colmena(
+    val Nombre:String,
+    val Especie:String,
+    var Rey:String,
+    
+){
+    fun cambiarSuRey(nuevoRey:String){
+        Rey = nuevoRey
+        println("${Nombre}, de los caidos, ahora sirve a ${Rey}")
+    }
+    fun imprimir(){
+        println("Colmena")
+        println("Nombre: ${Nombre}")
+        println("Especie: ${Especie}")
+        println("Rey: ${Rey}")
+    }
+}
+
+class Vex(
+    val Nombre:String,
+    val Modelo:String,
+    var Localizacion:String,
+){
+    fun teletransportar(nuevaLocacion:String){
+        Localizacion = nuevaLocacion
+        println("${Nombre}, de los vex, se transporta en el espacio tiempo hacia ${Localizacion}")
+    }
+    fun imprimir(){
+        println("Vex")
+        println("Nombre: ${Nombre}")
+        println("Modelo: ${Modelo}")
+        println("Localizacion: ${Localizacion}")
+    }
+}
+
+class Poseido(
+    val Nombre:String,
+    val Raza:String,
+){
+    fun seguirLaVoluntadDeOryx(){
+        println("${Nombre}, un poseido sin voluntad propia solo sigue las ordenes que recibe de Oryx\n")
+    }
+        fun imprimir(){
+        println("Poseido")
+        println("Nombre: ${Nombre}")
+        println("Raza: ${Raza}")
+    }
+}
+
+
+fun main() {
+    var guardian_1:Guardian = Guardian("Zavala","Titan","Insomne")
+    var eliksni_1:Eliksni = Eliksni("Naksis","Capitan","Demonios")
+    var colmena_1:Colmena = Colmena("Phogoth","Ogro","Crota")
+    var vex_1:Vex = Vex("Panoptes","Hydra","Bosque infinito")
+    var poseido_1:Poseido = Poseido("Sylok","Colmena")
+    guardian_1.imprimir()
+    guardian_1.agregarPoder("Estasis")
+    
+    eliksni_1.imprimir()
+    eliksni_1.cambiarCasa("Salvacion\n")
+    
+    colmena_1.imprimir()
+    colmena_1.cambiarSuRey("Oryx\n")
+    
+    vex_1.imprimir()
+    vex_1.teletransportar("la camara de cristal\n")
+    
+    poseido_1.imprimir()
+    poseido_1.seguirLaVoluntadDeOryx()
+}
