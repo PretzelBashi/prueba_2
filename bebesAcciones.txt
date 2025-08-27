@@ -1,0 +1,32 @@
+/**
+ * You can edit, run, and share this code.
+ * play.kotlinlang.org
+ */
+fun main() {
+   //Primero debemos seleccionar y alamcenar un numero aleatorio del rango valiod 0,100
+    //creamos la variable de intentos, inicia en 0
+    //despues damos las isntrucciones del juego
+    //aqui inicia el loop--
+    //pedimos un numero entre el rango valido
+    //validamos que sea un numero
+    //validamos que este dentro del rango
+    //validar si acerto el numero aleatorio
+    //		si es el numero, indicamos que gano
+    //		indicamos la cantidad de intentos
+    //		finalizamos el gameloop
+    //indicamos si es mayor o menor al numero aleatorio
+    //aumentamos los intentos en 1
+    //imprimimos si es mayo o no a la cantidad de intentos
+    //repetimos hasta que el usuario acierte
+    val input = mutableListOf("first", "second")
+fun readLine(): String? {
+    val line = input.firstOrNull()
+    input.removeAt(0)
+    return line
+}
+
+fun main() {
+    println(readLine())
+    println(readLine())
+}
+}
