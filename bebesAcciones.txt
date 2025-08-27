@@ -1,32 +1,201 @@
-/**
- * You can edit, run, and share this code.
- * play.kotlinlang.org
- */
-fun main() {
-   //Primero debemos seleccionar y alamcenar un numero aleatorio del rango valiod 0,100
-    //creamos la variable de intentos, inicia en 0
-    //despues damos las isntrucciones del juego
-    //aqui inicia el loop--
-    //pedimos un numero entre el rango valido
-    //validamos que sea un numero
-    //validamos que este dentro del rango
-    //validar si acerto el numero aleatorio
-    //		si es el numero, indicamos que gano
-    //		indicamos la cantidad de intentos
-    //		finalizamos el gameloop
-    //indicamos si es mayor o menor al numero aleatorio
-    //aumentamos los intentos en 1
-    //imprimimos si es mayo o no a la cantidad de intentos
-    //repetimos hasta que el usuario acierte
-    val input = mutableListOf("first", "second")
-fun readLine(): String? {
-    val line = input.firstOrNull()
-    input.removeAt(0)
-    return line
+enum class EstadosBebes{
+    despierto,
+    llorando,
+    dormido,
+    comiendo,
+    cagado_y_miado,
+    viendo_tele,
+    tieso
 }
 
-fun main() {
-    println(readLine())
-    println(readLine())
+class Bebe1(
+        var nombre: String,
+        var hambre: Int,
+        var pañal_lleno: Int,
+        var sueño: Int,
+        var felicidad: Int,
+        var inteligencia: Int,
+        var estado: EstadosBebes = EstadosBebes.despierto,
+        ){
+        
+    
+        
+    fun llorar(){
+        if(estado != EstadosBebes.viendo_tele && felicidad <25){
+            estado = EstadosBebes.llorando
+        } else {
+            println("El bebe ${nombre} esta muy feliz como para llorar")
+        }
+    }
+    
+    fun ver_tele(){
+        if(estado != EstadosBebes.dormido){
+        estado = EstadosBebes.viendo_tele
+        felicidad += 20
+        inteligencia += 20
+        }
+    }
+    
+    fun llenar_pañal(){
+        if (pañal_lleno > 50){
+            estado= EstadosBebes.cagado_y_miado
+            estado_actual()
+        }
+    }
+    
+    fun cambiar_pañal(){
+        if (pañal_lleno > 50){
+            pañal_lleno = 0
+            estado = EstadosBebes.despierto
+        } else{
+            println("El bebe ${nombre} no ha llenado su pañal")
+        }
+    }
+    
+    fun intentar_hablar(){
+        if (inteligencia > 49){
+            println("Pa-Papa")
+            println("El bebe ${nombre} ahora puede hablar")
+        } else {
+            println("gu gu wa wa gu wa")
+            println("El bebe ${nombre} no puede formular una sola palabra")
+        }
+    }
+    
+    fun mostrar_estado(){
+        println("El bebe ${nombre} actualmente esta: ${estado}")
+    }
+        
+    fun alimentar(){
+        estado = EstadosBebes.comiendo
+        hambre -= 40;
+    }
+
+    fun dormir(){
+        if((estado == EstadosBebes.despierto || estado == EstadosBebes.comiendo || estado == EstadosBebes.viendo_tele) && (sueño > 40 && felicidad >= 20)){
+            sueño = 0
+            estado = EstadosBebes.dormido
+        } else {
+            println("El bebe no puede dormir, necesita una felicidad de 20 y ahorita tiene ${felicidad} o no tiene sueño (sueño actual ${sueño}) ")
+        }
+
+    }
+    
+    fun despertar(){
+        if(estado == EstadosBebes.dormido){
+            estado = EstadosBebes.despierto
+        }
+        felicidad -= 10
+    }
+    
+    fun despertar_con_agua(){
+        if(estado == EstadosBebes.dormido){
+            estado = EstadosBebes.tieso
+        }
+    }
+    
+    fun actualizar_estado(){
+        when(estado){
+            EstadosBebes.despierto -> {
+                sueño += 5
+                hambre += 5
+                pañal_lleno += 3
+                felicidad -= 10
+                pañal_lleno += 10
+            }
+            else -> {
+                
+            }
+            
+        }
+    }
+    
+    fun picar_con_un_palo(): String{
+        return estado_actual()
+    }
+    
+    fun estado_actual(): String{
+        when(estado){
+            EstadosBebes.despierto -> {
+                return "El bebe esta despierto"
+            }
+            
+            EstadosBebes.tieso -> {
+                return "Estoy muerto"
+            }
+            
+            EstadosBebes.dormido -> {
+                return "Esta dormidito"
+            }
+            
+            EstadosBebes.comiendo -> {
+                return "Estoy alimentadome para ser grande y fuerte"
+            }
+            
+            EstadosBebes.cagado_y_miado -> {
+            return "El bebe se cago, deberia cambiarlo"
+            }
+            
+            EstadosBebes.viendo_tele -> {
+            return "Me guta mucho paw patrol gugu gaga"
+            }
+            
+            EstadosBebes.llorando -> {
+            return "wa wa wa wa wa wa wa"
+            }
+            
+            else -> {
+                return "No identifico el estado"
+            }
+        }
+    }
+    
 }
+
+
+fun main(){
+    val Jackie = Bebe1("Jackie", 50, 60, 70,20,20)
+    val Pedrin = Bebe1("Pedrin",10,10,10,80,10)
+    
+    Jackie.actualizar_estado()
+    Jackie.mostrar_estado()
+    println(Jackie.estado_actual())
+    Jackie.llorar()
+    Jackie.mostrar_estado()
+    println(Jackie.estado_actual())
+    Jackie.ver_tele()
+    Jackie.mostrar_estado()
+    println(Jackie.estado_actual())
+    Jackie.llenar_pañal()
+    Jackie.mostrar_estado()
+    println(Jackie.estado_actual())
+    Jackie.cambiar_pañal()
+    Jackie.mostrar_estado()
+    println(Jackie.estado_actual())
+    Jackie.llenar_pañal()
+    Jackie.mostrar_estado()
+    println(Jackie.estado_actual())
+    
+    println()
+    
+    Pedrin.actualizar_estado()
+    Pedrin.llorar()
+    Pedrin.actualizar_estado()
+    Pedrin.actualizar_estado()
+    Pedrin.actualizar_estado()
+    Pedrin.actualizar_estado()
+    Pedrin.actualizar_estado()
+    Pedrin.actualizar_estado()
+    Pedrin.mostrar_estado()
+    Pedrin.llorar()
+    Pedrin.dormir()
+    Pedrin.ver_tele()
+    Pedrin.ver_tele()
+    Pedrin.ver_tele()
+    println(Pedrin.estado_actual())
+    Pedrin.intentar_hablar()
+    Pedrin.dormir()
+    println(Pedrin.estado_actual())
 }
+
+
