@@ -6,9 +6,10 @@ enum class EstadosBebes{
     cagado_y_miado,
     viendo_tele,
     tieso,
-    hablando
+    hablando,
+    jugando
 }
-//No agrege muchos nuevos estados porque habian varios sin uso, entonces los use esos mismos para los nuevos comportamientos (cagado, viendo tele y llorando no tenian funcionalidad, agrege hablando)
+//No agrege muchos nuevos estados porque habian varios sin uso, entonces los use esos mismos para los nuevos comportamientos (cagado, viendo tele y llorando no tenian funcionalidad, agregue hablando y jugando)
 
 class Bebe1(
         var nombre: String,
@@ -20,7 +21,12 @@ class Bebe1(
         var estado: EstadosBebes = EstadosBebes.despierto,
         ){
         
-    
+    fun jugar(){
+        if(estado != EstadosBebes.dormido){
+            estado = EstadosBebes.jugando
+            felicidad += 20
+        }
+    }
         
     fun llorar(){
         if(estado != EstadosBebes.viendo_tele && felicidad <25){
@@ -151,6 +157,10 @@ class Bebe1(
             return "El bebe esta intentando hablar"
             }
             
+            EstadosBebes.jugando -> {
+            return "El bebe ta jugando con sus juguetes"
+            }
+            
             else -> {
                 return "No identifico el estado"
             }
@@ -203,5 +213,9 @@ fun main(){
     Pedrin.intentar_hablar()
     Pedrin.dormir()
     println(Pedrin.estado_actual())
+    Pedrin.jugar()
+    println(Pedrin.estado_actual())
 }
+
+
 
