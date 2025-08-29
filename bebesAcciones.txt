@@ -5,8 +5,10 @@ enum class EstadosBebes{
     comiendo,
     cagado_y_miado,
     viendo_tele,
-    tieso
+    tieso,
+    hablando
 }
+//No agrege muchos nuevos estados porque habian varios sin uso, entonces los use esos mismos para los nuevos comportamientos (cagado, viendo tele y llorando no tenian funcionalidad, agrege hablando)
 
 class Bebe1(
         var nombre: String,
@@ -56,6 +58,7 @@ class Bebe1(
         if (inteligencia > 49){
             println("Pa-Papa")
             println("El bebe ${nombre} ahora puede hablar")
+            estado = EstadosBebes.hablando
         } else {
             println("gu gu wa wa gu wa")
             println("El bebe ${nombre} no puede formular una sola palabra")
@@ -143,6 +146,10 @@ class Bebe1(
             EstadosBebes.llorando -> {
             return "wa wa wa wa wa wa wa"
             }
+
+            EstadosBebes.hablando -> {
+            return "El bebe esta intentando hablar"
+            }
             
             else -> {
                 return "No identifico el estado"
@@ -197,5 +204,4 @@ fun main(){
     Pedrin.dormir()
     println(Pedrin.estado_actual())
 }
-
 
