@@ -1,0 +1,192 @@
+// habilidades
+interface Habilidad {
+    var nombre: String
+    var activo: Boolean
+    var descripcion: String?
+    
+    fun activar(): Boolean{
+        if (activo){
+            return false
+        }
+        else{
+            activo = true
+            return true
+        }
+    }
+    
+    fun desactivar(): Boolean{
+        if (!activo){
+            return false
+        }
+        else {
+            activo = false
+            return true
+        }
+    }
+}
+
+interface Habilidades{
+    var capacidades: MutableList<Habilidad>
+    
+    fun activar_capacidad(nombre: String): Boolean{
+        for(capacidad in capacidades){
+            if(capacidad.nombre == nombre){
+                return capacidad.activar()
+            }
+        }
+        return false
+    }
+    
+    fun agregar_capacidad(capacidad_nueva: Habilidad){
+        capacidades.add(capacidad_nueva)
+    }
+    
+    fun descripcion(): String{
+        var lista_de_capacidades = "${capacidades.size}: "
+        for(capacidad in capacidades){
+            lista_de_capacidades = "${lista_de_capacidades}, ${capacidad.nombre}"
+        }
+        return lista_de_capacidades
+    }
+}
+
+class SuperPoder(
+    override var nombre: String,
+    override var activo: Boolean,
+    override var descripcion: String?
+): Habilidad {}
+
+
+//miedos
+interface Miedo{
+    var nombre: String
+}
+
+interface Miedos{
+    var lista_miedos: MutableList<Miedo>
+    
+    fun agregar_miedo(miedo_nuevo: Miedo){
+        lista_miedos.add(miedo_nuevo)
+    }
+    
+    fun descripcion_miedos(): String{
+        var lista = "${lista_miedos.size}: "
+        for(m in lista_miedos){
+            lista = "${lista}, ${m.nombre}"
+        }
+        return lista
+    }
+}
+
+class Fobia(
+    override var nombre: String
+): Miedo {}
+
+
+//debilidades
+interface Debilidad{
+    var nombre: String
+}
+
+interface Debilidades{
+    var lista_debilidades: MutableList<Debilidad>
+    
+    fun agregar_debilidad(debilidad_nueva: Debilidad){
+        lista_debilidades.add(debilidad_nueva)
+    }
+    
+    fun descripcion_debilidades(): String{
+        var lista = "${lista_debilidades.size}: "
+        for(d in lista_debilidades){
+            lista = "${lista}, ${d.nombre}"
+        }
+        return lista
+    }
+}
+
+class PuntoDebil(
+    override var nombre: String
+): Debilidad {}
+
+
+//cosas favoritas
+interface Favorito{
+    var nombre: String
+}
+
+interface Favoritos{
+    var lista_favoritos: MutableList<Favorito>
+    
+    fun agregar_favorito(favorito_nuevo: Favorito){
+        lista_favoritos.add(favorito_nuevo)
+    }
+    
+    fun descripcion_favoritos(): String{
+        var lista = "${lista_favoritos.size}: "
+        for(f in lista_favoritos){
+            lista = "${lista}, ${f.nombre}"
+        }
+        return lista
+    }
+}
+
+class Gusto(
+    override var nombre: String
+): Favorito {}
+
+
+//interface maestra
+interface Propiedades : Habilidades, Miedos, Debilidades, Favoritos
+
+
+class Bebe(): Propiedades {
+    override var capacidades: MutableList<Habilidad> = mutableListOf()
+    override var lista_miedos: MutableList<Miedo> = mutableListOf()
+    override var lista_debilidades: MutableList<Debilidad> = mutableListOf()
+    override var lista_favoritos: MutableList<Favorito> = mutableListOf()
+}
+
+class Zorro(): Propiedades {
+    override var capacidades: MutableList<Habilidad> = mutableListOf()
+    override var lista_miedos: MutableList<Miedo> = mutableListOf()
+    override var lista_debilidades: MutableList<Debilidad> = mutableListOf()
+    override var lista_favoritos: MutableList<Favorito> = mutableListOf()
+}
+
+fun main(){
+    val poder = SuperPoder("Rayos Laser", false, "Una entidad con rayos laser")
+    val poder_2 = SuperPoder("Volar", false, "La habilidad de volar")
+    val poder_3 = SuperPoder("SuperFuerza", false, "La capacidad de tener mucha fuerza")
+    
+    val fobia1 = Fobia("Oscuridad")
+    val debilidad1 = PuntoDebil("Debil al frio")
+    val gusto1 = Gusto("Leche tibia")
+    
+    val fobia2 = Fobia("Truenos")
+    val debilidad2 = PuntoDebil("Su cola")
+    val gusto2 = Gusto("Gallinas")
+    
+    val bebe = Bebe()
+    bebe.agregar_capacidad(poder)
+    bebe.agregar_capacidad(poder_2)
+    bebe.agregar_capacidad(poder_3)
+    bebe.agregar_miedo(fobia1)
+    bebe.agregar_debilidad(debilidad1)
+    bebe.agregar_favorito(gusto1)
+    
+    val zorito_de_firefox = Zorro()
+    zorito_de_firefox.agregar_capacidad(poder_3)
+    zorito_de_firefox.agregar_miedo(fobia2)
+    zorito_de_firefox.agregar_debilidad(debilidad2)
+    zorito_de_firefox.agregar_favorito(gusto2)
+    
+    println("Los poderes del bebe son ${bebe.descripcion()}")
+    println("Los miedos del bebe son ${bebe.descripcion_miedos()}")
+    println("Las debilidades del bebe son ${bebe.descripcion_debilidades()}")
+    println("Las cosas favoritas del bebé son ${bebe.descripcion_favoritos()}")
+    
+    println("\nLos poderes del zorro son ${zorito_de_firefox.descripcion()}")
+    println("Los miedos del zorro son ${zorito_de_firefox.descripcion_miedos()}")
+    println("Las debilidades del zorro son ${zorito_de_firefox.descripcion_debilidades()}")
+    println("Las cosas favoritas del zorro son ${zorito_de_firefox.descripcion_favoritos()}")
+}
